@@ -3,26 +3,6 @@ const nodemailer = require("nodemailer");
 const axios = require("axios");
 const router = express.Router();
 const Email = require("../models/Email");
-const cors = require("cors");
-
-// CORS configuration
-const allowedOrigins = [
-  "https://pankaj-shah.vercel.app",
-  "http://localhost:3000",
-];
-router.use(
-  cors({
-    origin: function (origin, callback) {
-      // allow requests from the specified domains
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        return callback(null, true);
-      } else {
-        return callback(new Error("Not allowed by CORS"));
-      }
-    },
-  })
-);
-
 require("dotenv").config();
 
 // Nodemailer setup
@@ -126,4 +106,3 @@ async function verifyRecaptcha(secretKey, recaptchaToken) {
 }
 
 module.exports = router;
-
